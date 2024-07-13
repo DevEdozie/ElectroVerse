@@ -10,10 +10,12 @@ Welcome to the official repository of the **Khan** mobile app. This app is desig
 - **User-Friendly Navigation**: Intuitive navigation for easy access to different sections of the app.
 
 ## Screenshots
-![welcome Page](https://github.com/DevEdozie/Khan_mobile_app/blob/main/welcome_screen.jpg)
-![Products Page](https://github.com/DevEdozie/Khan_mobile_app/blob/main/products_page.jpg)
-![Item Details Page](https://github.com/DevEdozie/Khan_mobile_app/blob/main/details_screen.jpg)
-![Network Error](https://github.com/DevEdozie/Khan_mobile_app/blob/main/no_signal_view.jpg)
+![Home Page](https://github.com/DevEdozie/Task-3-HNG/blob/main/home_page.jpg)
+![Item Details Page](https://github.com/DevEdozie/Task-3-HNG/blob/main/detail_page.jpg)
+![Cart page](https://github.com/DevEdozie/Task-3-HNG/blob/main/cart_page.jpg)
+![Special offers](https://github.com/DevEdozie/Task-3-HNG/blob/main/special_offers_category.jpg)
+![More](https://github.com/DevEdozie/Task-3-HNG/blob/main/more_from_khan.jpg)
+
 
 ## Setup Instructions
 
