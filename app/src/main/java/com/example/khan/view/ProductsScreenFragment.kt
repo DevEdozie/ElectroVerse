@@ -5,11 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
+import com.example.khan.adapter.FeaturedProductsAdapter
 import com.example.khan.adapter.ProductAdapter
+import com.example.khan.adapter.SliderAdapter
 import com.example.khan.databinding.FragmentProductsScreenBinding
 import com.example.khan.model.BaseResponse
 import com.example.khan.viewmodel.MainActivityViewmodel
@@ -21,6 +26,9 @@ class ProductsScreenFragment : Fragment() {
 
     // Declare the ProductAdapter and binding object
     private lateinit var productAdapter: ProductAdapter
+
+    // Declare the FeaturedProductAdapter and binding object
+    private lateinit var featuredProductAdapter: FeaturedProductsAdapter
     private lateinit var binding: FragmentProductsScreenBinding
 
     // Inflate the fragment layout and initialize necessary components
@@ -46,6 +54,9 @@ class ProductsScreenFragment : Fragment() {
         // Set up swipe to refresh functionality
         setUpSwipeToRefresh()
 
+        // Set up view pager
+        setUpViewPager()
+
         return binding.root
     }
 
@@ -64,8 +75,8 @@ class ProductsScreenFragment : Fragment() {
 
                 is BaseResponse.Success -> {
                     // On success, make the RecyclerView visible and hide the no signal text
-                    binding.productsRecyclerview.visibility = View.VISIBLE
-                    binding.noSignalTv.visibility = View.GONE
+//                    binding.productsRecyclerview.visibility = View.VISIBLE
+//                    binding.noSignalTv.visibility = View.GONE
                 }
 
                 is BaseResponse.Error -> {
@@ -76,8 +87,8 @@ class ProductsScreenFragment : Fragment() {
                         "${errorMessage}",
                         Toast.LENGTH_SHORT
                     ).show()
-                    binding.productsRecyclerview.visibility = View.GONE
-                    binding.noSignalTv.visibility = View.VISIBLE
+//                    binding.productsRecyclerview.visibility = View.GONE
+//                    binding.noSignalTv.visibility = View.VISIBLE
                 }
             }
         }
@@ -86,15 +97,24 @@ class ProductsScreenFragment : Fragment() {
     // Function to set up the RecyclerView with the ProductAdapter
     private fun setUpRecyclerView() {
         productAdapter = ProductAdapter(viewModel)
+        featuredProductAdapter = FeaturedProductsAdapter(viewModel)
 
         binding.productsRecyclerview.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 2)
             adapter = productAdapter
+        }
+
+        binding.featuredProductsRecyclerview.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = featuredProductAdapter
         }
 
         // Observe items data from the ViewModel and submit to the adapter
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            productAdapter.differ.submitList(items)
+//            productAdapter.differ.submitList(items)
+            // Submit the filtered list to the adapter
+            productAdapter.submitList(items)
+            featuredProductAdapter.submitList((items))
         }
     }
 
@@ -117,6 +137,18 @@ class ProductsScreenFragment : Fragment() {
             viewModel.fetchProducts()
             // Explicitly stop the refreshing animation
             binding.swipeToRefresh.isRefreshing = false
+        }
+    }
+
+    private fun setUpViewPager() {
+
+
+        // Observe items data from the ViewModel and submit to the adapter
+        viewModel.items.observe(viewLifecycleOwner) { items ->
+            val sliderAdapter = SliderAdapter(items)
+            binding.viewPager.adapter = sliderAdapter
+            // Set up circle indicator with view pager
+            binding.circleIndicator.setViewPager(binding.viewPager)
         }
     }
 }

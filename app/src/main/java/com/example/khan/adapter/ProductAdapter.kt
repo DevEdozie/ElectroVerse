@@ -1,5 +1,6 @@
 package com.example.khan.adapter
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -9,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.khan.R
 import com.example.khan.databinding.ProductsItemLayoutBinding
+import com.example.khan.databinding.SpecialOfferItemBinding
 import com.example.khan.model.Item
-import com.example.khan.view.ProductsScreenFragmentDirections
+//import com.example.khan.view.ProductsScreenFragmentDirections
 import com.example.khan.viewmodel.MainActivityViewmodel
 
 // Adapter class for displaying products in a RecyclerView
@@ -19,7 +21,7 @@ class ProductAdapter(
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     // ViewHolder class to hold and bind the product item view
-    inner class ProductViewHolder(val itemBinding: ProductsItemLayoutBinding) :
+    inner class ProductViewHolder(val itemBinding: SpecialOfferItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
 
     // DiffUtil callback to efficiently update the list of products
@@ -42,7 +44,7 @@ class ProductAdapter(
     // Inflates the item layout and creates a ViewHolder object
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding =
-            ProductsItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SpecialOfferItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProductViewHolder(binding)
     }
 
@@ -57,7 +59,13 @@ class ProductAdapter(
             // Set the product title
             productTitle.text = currentProduct.name
             // Set the product price
-            productPrice.text = "$${currentProduct.current_price[0].USD[0]}"
+            val currentPrice = currentProduct.current_price[0].USD[0]
+            productPrice.text = "$$currentPrice"
+            val oldPrice = currentPrice.toString().toDouble() + 10
+            productOldPrice.apply {
+                text = "$${oldPrice}"
+                paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            }
             // Check if photos list is not empty and load the first image
             val imageUrl = "https://api.timbu.cloud/images/${currentProduct.photos[0].url}"
             if (imageUrl.isNotEmpty()) {
@@ -70,8 +78,18 @@ class ProductAdapter(
             productImage.setOnClickListener {
                 val productId = currentProduct.id
                 viewModel.fetchProduct(productId)
-                it.findNavController().navigate(R.id.action_productsScreenFragment_to_productDetailFragment)
+                it.findNavController()
+                    .navigate(R.id.action_productsScreenFragment_to_productDetailFragment)
             }
         }
+    }
+
+    // Method to filter and submit the list of items
+    fun submitList(items: List<Item>) {
+        val specialOffersFilter = "special offers"
+        val filteredItems = items.filter { item ->
+            item.categories.any { category -> category.name == specialOffersFilter }
+        }
+        differ.submitList(filteredItems)
     }
 }

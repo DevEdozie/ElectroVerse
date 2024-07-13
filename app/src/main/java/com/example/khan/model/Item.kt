@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 data class Item(
     val available_quantity: Any,
     val buying_price: Any,
-    val categories: List<Any>,
+    val categories: List<Category>,
     val current_price: List<CurrentPrice>,
     val date_created: String,
     val description: Any,

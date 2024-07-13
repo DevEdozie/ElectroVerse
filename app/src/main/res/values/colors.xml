@@ -11,4 +11,6 @@
     <color name="deep_purple">#6200EE</color>
     <color name="teal">#008577</color>
     <color name="teal_dark">#00574B</color>
+    <color name="blue">#0072C6</color>
+    <color name="lighter_gray">#eceff1</color>
 </resources>

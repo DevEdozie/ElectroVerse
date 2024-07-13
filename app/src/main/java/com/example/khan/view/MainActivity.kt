@@ -1,8 +1,10 @@
 package com.example.khan.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.khan.R
 import com.example.khan.databinding.ActivityMainBinding
 
@@ -18,12 +20,39 @@ class MainActivity : AppCompatActivity() {
         // Inflate the layout for this activity
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        // Set up NavController to manage navigation within the app
+//        // Set up NavController to manage navigation within the app
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+//        val navController = navHostFragment.navController
+        setUpBottomNavigation()
+        // Set the content view to the inflated layout
+        setContentView(binding.root)
+    }
+
+
+    private fun setUpBottomNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
+        binding.bottomNavView.setupWithNavController(navController)
 
-        // Set the content view to the inflated layout
-        setContentView(binding.root)
+
+        // Listen for fragment changes
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.productDetailFragment, R.id.cartFragment2, R.id.checkoutFragment -> hideBottomNavigation()
+                else -> showBottomNavigation()
+            }
+        }
+    }
+
+
+    private fun hideBottomNavigation() {
+        binding.bottomNavView.visibility = View.GONE
+
+    }
+
+    private fun showBottomNavigation() {
+        binding.bottomNavView.visibility = View.VISIBLE
     }
 }

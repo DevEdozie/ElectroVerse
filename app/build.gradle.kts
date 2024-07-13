@@ -64,7 +64,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     // Swipe to refresh
     implementation(libs.androidx.swiperefreshlayout)
-
+    // Circle Indicator
+    implementation(libs.circleindicator)
     // Pre defined dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

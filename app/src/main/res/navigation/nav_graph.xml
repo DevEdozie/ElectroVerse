@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/productsScreenFragment">
 
     <fragment
         android:id="@+id/productsScreenFragment"
@@ -23,12 +23,17 @@
 
     </fragment>
     <fragment
-        android:id="@+id/splashScreenFragment"
-        android:name="com.example.khan.view.SplashScreenFragment"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
+        android:id="@+id/cartFragment2"
+        android:name="com.example.khan.view.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
         <action
-            android:id="@+id/action_splashScreenFragment_to_productsScreenFragment"
-            app:destination="@id/productsScreenFragment" />
+            android:id="@+id/action_cartFragment2_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.khan.view.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" />
 </navigation>
