@@ -1,4 +1,4 @@
-# Khan
+# ElectroVerse
 
 Welcome to the official repository of the **Khan** mobile app. This app is designed to fetch and display data from a backend server, providing users with detailed information about various items. Items in this case, shoes available in store.
 
