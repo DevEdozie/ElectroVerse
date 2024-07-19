@@ -52,6 +52,8 @@ class ProductDetailFragment : Fragment() {
         // Set up List
         setUpRecyclerView()
 
+        // Set up counter
+        setUpCounter()
 
 
         return binding.root
@@ -144,6 +146,35 @@ class ProductDetailFragment : Fragment() {
             productDetailsAdapter.submitList((items))
         }
     }
+
+    private fun setUpCounter() {
+        val plusBtn = binding.plusIv
+        val minusBtn = binding.minusIv
+        val countTv = binding.qtyCount
+        var currentCount = countTv.text.toString().toInt()
+
+        plusBtn.setOnClickListener {
+            if (currentCount < 10) {
+                currentCount += 1
+                countTv.text = currentCount.toString()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "You cannot purchase more than 10 products as there are only 10 products currently available.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        minusBtn.setOnClickListener {
+            if (currentCount > 1) {
+                currentCount -= 1
+                countTv.text = currentCount.toString()
+            }
+            // Do nothing if currentCount is 1
+        }
+    }
+
 
 
 }
