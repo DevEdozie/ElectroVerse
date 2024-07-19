@@ -57,7 +57,7 @@ class FeaturedProductsAdapter(
             // Set the product title
             productTitle.text = currentProduct.name
             // Set the product price
-            productPrice.text = "$${currentProduct.current_price[0].USD[0]}"
+//            productPrice.text = "$${currentProduct.current_price[0].USD[0]}"
             // Check if photos list is not empty and load the first image
             val imageUrl = "https://api.timbu.cloud/images/${currentProduct.photos[0].url}"
             if (imageUrl.isNotEmpty()) {
@@ -78,9 +78,9 @@ class FeaturedProductsAdapter(
 
     // Method to filter and submit the list of items
     fun submitList(items: List<Item>) {
-        val featuredSneakersFilter = "featured sneakers"
+        val featuredProductsFilter = "featured products"
         val filteredItems = items.filter { item ->
-            item.categories.any { category -> category.name == featuredSneakersFilter }
+            item.categories.any { category -> category.name == featuredProductsFilter }
         }
         differ.submitList(filteredItems)
     }

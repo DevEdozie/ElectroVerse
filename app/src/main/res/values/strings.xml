@@ -43,4 +43,6 @@
     <string name="price_summary">Price summary</string>
     <string name="cancel">Cancel</string>
     <string name="proceed">Proceed</string>
+    <string name="featured_products">Featured Products</string>
+    <string name="you_might_also_like">You might also like</string>
 </resources>

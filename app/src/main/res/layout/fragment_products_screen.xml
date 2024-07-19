@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/check_internet_connection"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         android:visibility="gone"
         app:drawableTopCompat="@drawable/no_signal_ic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +52,7 @@
         android:id="@+id/swipe_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="12dp"
+        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,15 +116,48 @@
                     app:layout_constraintEnd_toEndOf="@id/view_pager"
                     app:layout_constraintStart_toStartOf="@id/view_pager" />
 
-                <ImageView
-                    android:id="@+id/all_products_iv"
+                <LinearLayout
+                    android:id="@+id/all_products_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginVertical="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:padding="2dp"
+                    android:orientation="horizontal"
                     android:src="@drawable/all_products_img"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/circle_indicator" />
+                    app:layout_constraintTop_toBottomOf="@id/circle_indicator">
+
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/apple_logo_black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/nvidia_logo" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/samsung_logo" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/sony_logo" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/special_offers_tv"
@@ -132,9 +166,10 @@
                     android:text="@string/our_special_offers"
                     android:textSize="24sp"
                     android:textStyle="bold"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/all_products_iv" />
+                    app:layout_constraintTop_toBottomOf="@id/all_products_layout" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -147,10 +182,10 @@
                     tools:listitem="@layout/special_offer_item" />
 
                 <TextView
-                    android:id="@+id/featured_shoes_tv"
+                    android:id="@+id/featured_products_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/featured_shoes"
+                    android:text="@string/featured_products"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +200,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/featured_shoes_tv"
+                    app:layout_constraintTop_toBottomOf="@id/featured_products_tv"
                     tools:listitem="@layout/featured_shoes_item" />
 
 

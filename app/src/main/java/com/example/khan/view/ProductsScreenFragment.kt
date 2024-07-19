@@ -142,7 +142,6 @@ class ProductsScreenFragment : Fragment() {
 
     private fun setUpViewPager() {
 
-
         // Observe items data from the ViewModel and submit to the adapter
         viewModel.items.observe(viewLifecycleOwner) { items ->
             val sliderAdapter = SliderAdapter(items)

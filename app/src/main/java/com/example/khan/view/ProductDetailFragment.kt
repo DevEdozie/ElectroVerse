@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.khan.R
 import com.example.khan.adapter.FeaturedProductsAdapter
 import com.example.khan.adapter.ProductAdapter
+import com.example.khan.adapter.ProductsDetailsAdapter
 import com.example.khan.databinding.FragmentProductDetailBinding
 import com.example.khan.model.BaseResponse
 import com.example.khan.model.Item
@@ -27,18 +28,12 @@ class ProductDetailFragment : Fragment() {
     // Declare the binding object for this fragment
     private lateinit var binding: FragmentProductDetailBinding
 
-    // Declare the FeaturedProductAdapter and binding object
-    private lateinit var featuredProductAdapter: FeaturedProductsAdapter
+    // Declare the Adapter and binding object
+    private lateinit var productDetailsAdapter: ProductsDetailsAdapter
 
     // Obtain the ViewModel from the parent activity
     private val viewModel: MainActivityViewmodel by activityViewModels()
 
-
-    private var selectedColor: Int? = null
-    private var selectedColorView: View? = null
-
-    private var selectedNumber: Int? = null
-    private var selectedTextView: TextView? = null
 
     // Inflate the fragment layout and initialize necessary components
     override fun onCreateView(
@@ -56,18 +51,7 @@ class ProductDetailFragment : Fragment() {
 
         // Set up List
         setUpRecyclerView()
-        //
-        setupOptions(
-            container = binding.colorOptionsLayout,
-            options = listOf(Color.RED, Color.BLUE, Color.BLACK),
-            isColor = true
-        )
 
-        setupOptions(
-            container = binding.numberOptionsLayout,
-            options = (32..36).toList(),
-            isColor = false
-        )
 
 
         return binding.root
@@ -99,6 +83,15 @@ class ProductDetailFragment : Fragment() {
             // Set a placeholder image or handle the case where there is no image
             binding.productImage.setImageResource(R.drawable.terrex_free_hiker)
         }
+
+        // Get the category names of the current product
+        val categoryNames = product?.categories?.map { it.name } ?: emptyList()
+        // Notify the adapter to filter items based on the selected category name
+        val selectedCategoryName = categoryNames.firstOrNull { category ->
+            category in listOf("laptops", "monitors", "watches", "tablets", "headphones", "phones")
+        }
+        productDetailsAdapter.updateCategory(selectedCategoryName)
+//        productDetailsAdapter.updateCategory(selectedCategoryName, product?.id)
     }
 
     // Function to observe product data from the ViewModel
@@ -133,91 +126,22 @@ class ProductDetailFragment : Fragment() {
         }
     }
 
-    private fun setupOptions(container: LinearLayout, options: List<Any>, isColor: Boolean) {
-        for (option in options) {
-            if (isColor) {
-                val colorView = View(context).apply {
-                    setBackgroundColor(option as Int)
-                    layoutParams = LinearLayout.LayoutParams(
-                        0,
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        1f
-                    ).apply {
-                        setMargins(8, 8, 8, 8)
-                    }
-                }
-
-                colorView.setOnClickListener {
-                    selectOption(option, colorView, true)
-                }
-
-                container.addView(colorView)
-            } else {
-                val number = option as Int
-                val numberTextView = TextView(context).apply {
-                    text = number.toString()
-                    textSize = 16f
-                    setPadding(8, 8, 8, 8)
-                    setBackgroundResource(R.drawable.number_background)
-                    setTextColor(Color.BLACK)
-                    gravity = android.view.Gravity.START
-                    layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    ).apply {
-                        setMargins(8, 0, 8, 0)
-                    }
-                }
-
-                numberTextView.setOnClickListener {
-                    selectOption(number, numberTextView, false)
-                }
-
-                container.addView(numberTextView)
-            }
-        }
-    }
-
-    private fun selectOption(option: Any, view: View, isColor: Boolean) {
-        if (isColor) {
-            selectedColorView?.setBackgroundColor(selectedColorView?.tag as Int)
-
-            view.setBackgroundColor(Color.parseColor("#007BFF"))
-            selectedColor = option as Int
-            selectedColorView = view
-
-            Toast.makeText(
-                context,
-                "Selected color: #${Integer.toHexString(option)}",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            selectedTextView?.setBackgroundResource(R.drawable.number_background)
-
-            view.setBackgroundResource(R.drawable.selected_number_background)
-            selectedNumber = option as Int
-            selectedTextView = view as TextView
-
-            Toast.makeText(context, "Selected number: $option", Toast.LENGTH_SHORT).show()
-        }
-    }
-
 
     // Function to set up the RecyclerView with the ProductAdapter
     private fun setUpRecyclerView() {
-        featuredProductAdapter = FeaturedProductsAdapter(viewModel)
+        productDetailsAdapter = ProductsDetailsAdapter(viewModel)
 
 
         binding.productsRecyclerview.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = featuredProductAdapter
+            adapter = productDetailsAdapter
         }
 
         // Observe items data from the ViewModel and submit to the adapter
         viewModel.items.observe(viewLifecycleOwner) { items ->
 //            productAdapter.differ.submitList(items)
             // Submit the filtered list to the adapter
-            featuredProductAdapter.submitList((items))
+            productDetailsAdapter.submitList((items))
         }
     }
 

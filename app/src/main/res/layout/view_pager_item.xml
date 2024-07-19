@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:cardCornerRadius="14dp"
-    app:cardElevation="12dp"
+    app:cardElevation="4dp"
     android:layout_margin="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/terrex_free_hiker"
-            android:background="@color/white"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +28,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/product_price"
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/product_img"
             app:layout_constraintTop_toTopOf="@id/product_img"
             app:layout_constraintBottom_toBottomOf="@id/product_img"
@@ -38,13 +40,17 @@
         <TextView
             android:id="@+id/product_title"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textSize="16sp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@id/product_price"
             app:layout_constraintTop_toTopOf="@id/product_price"
             app:layout_constraintBottom_toBottomOf="@id/product_price"
             android:text="@string/product_title"
             android:layout_marginEnd="8dp"
-            android:textColor="@color/white"/>
+            android:maxEms="10"
+            android:textColor="@color/blue"/>
 
         <Button
             android:id="@+id/add_to_cart"

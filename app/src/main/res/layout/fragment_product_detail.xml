@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
     tools:context=".view.ProductDetailFragment">
 
     <Toolbar
@@ -31,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,15 +80,6 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <TextView
-                    android:id="@+id/at_wear_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/athletic_sportswear"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/product_image_card" />
 
 
                 <TextView
@@ -101,7 +92,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/at_wear_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/product_image_card" />
 
                 <TextView
                     android:id="@+id/product_desc"
@@ -155,54 +146,18 @@
 
 
                 <ImageView
+                    android:layout_margin="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="4dp"
                     android:src="@drawable/favorite_checked_ic"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/at_wear_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/product_image_card" />
 
-                <TextView
-                    android:id="@+id/size_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/size"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/product_desc" />
 
-                <LinearLayout
-                    android:id="@+id/number_options_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="start"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/size_tv" />
 
-                <TextView
-                    android:id="@+id/colours_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/colours"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/number_options_layout" />
 
-                <LinearLayout
-                    android:id="@+id/color_options_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="start"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/colours_tv" />
+
+
 
                 <TextView
                     android:id="@+id/qty_tv"
@@ -211,25 +166,28 @@
                     android:text="@string/quantity"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/color_options_layout" />
+                    app:layout_constraintTop_toBottomOf="@id/product_desc" />
 
                 <LinearLayout
+                    android:layout_marginTop="6dp"
                     android:id="@+id/qty_counter_layout"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/qty_tv">
 
                     <ImageView
                         android:id="@+id/minus_iv"
+                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="2dp"
                         android:src="@drawable/minus_ic" />
 
                     <TextView
+                        android:gravity="center"
+                        android:layout_weight="1"
                         android:id="@+id/qty_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -239,6 +197,7 @@
                         android:text="@string/one" />
 
                     <ImageView
+                        android:layout_weight="1"
                         android:id="@+id/plus_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -251,7 +210,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
-                    android:text="@string/more_from_khan"
+                    android:text="@string/you_might_also_like"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
