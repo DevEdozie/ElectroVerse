@@ -144,7 +144,7 @@ class ProductsScreenFragment : Fragment() {
 
         // Observe items data from the ViewModel and submit to the adapter
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            val sliderAdapter = SliderAdapter(items)
+            val sliderAdapter = SliderAdapter(items,viewModel)
             binding.viewPager.adapter = sliderAdapter
             // Set up circle indicator with view pager
             binding.circleIndicator.setViewPager(binding.viewPager)

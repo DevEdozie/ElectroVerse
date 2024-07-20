@@ -5,20 +5,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.khan.R
+import com.example.khan.adapter.CartItemsAdapter
+import com.example.khan.adapter.FeaturedProductsAdapter
+import com.example.khan.adapter.ProductAdapter
 import com.example.khan.databinding.FragmentCartBinding
+import com.example.khan.databinding.FragmentProductsScreenBinding
+import com.example.khan.viewmodel.MainActivityViewmodel
 
 
 class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
+    // Obtain ViewModel from the parent activity
+    private val viewModel: MainActivityViewmodel by activityViewModels()
+
+    // Declare the CartItemsAdapter and binding object
+    private lateinit var cartItemsAdapter: CartItemsAdapter
+
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCartBinding.inflate(layoutInflater, container, false)
+        setUpRecyclerView()
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -29,6 +47,22 @@ class CartFragment : Fragment() {
         binding.backArrow.setOnClickListener {
             // Pop back stack to ProductsScreenFragment
             findNavController().popBackStack(R.id.productsScreenFragment, false)
+        }
+    }
+
+    // Function to set up the RecyclerView with the ProductAdapter
+    private fun setUpRecyclerView() {
+        cartItemsAdapter = CartItemsAdapter(viewModel)
+
+        binding.cartRecyclerview.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = cartItemsAdapter
+        }
+
+
+        // Observe items data from the ViewModel and submit to the adapter
+        viewModel.getAllCartItems().observe(viewLifecycleOwner) { items ->
+            cartItemsAdapter.differ.submitList(items)
         }
     }
 

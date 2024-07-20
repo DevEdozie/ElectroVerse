@@ -1,16 +1,26 @@
 package com.example.khan.viewmodel
 
+import android.app.Application
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.khan.local_db.database.AppDatabase
+import com.example.khan.local_db.entity.CartItem
 import com.example.khan.model.BaseResponse
 import com.example.khan.model.Item
 import com.example.khan.model.ProductsResponse
+import com.example.khan.repository.CacheRepository
 import com.example.khan.repository.TimbuRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class MainActivityViewmodel : ViewModel() {
+class MainActivityViewmodel(application: Application) : AndroidViewModel(application) {
+
 
     // Lazy initialization of the repository
     val timbuRepo by lazy {
@@ -29,10 +39,15 @@ class MainActivityViewmodel : ViewModel() {
     private val _items: MutableLiveData<List<Item>> = MutableLiveData()
     val items: LiveData<List<Item>> = _items
 
-    // Initialize ViewModel by fetching products
+    private val repository: CacheRepository
+
     init {
+        val cartDao = AppDatabase.getDatabase(application).cartDao()
+        repository = CacheRepository(cartDao)
         fetchProducts()
     }
+
+
 
     // Function to fetch products
     fun fetchProducts() {
@@ -71,4 +86,46 @@ class MainActivityViewmodel : ViewModel() {
             }
         }
     }
+
+
+    // Function to add a product to the cart
+    fun addToCart(item: CartItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val cartItems = getAllCartItems()
+            val productName = item.productTitle
+            val isInCart = cartItems.value?.any { product -> product.productTitle == productName } ?: false
+            Log.d("MainActivityViewmodel", "addToCart called with item: $item")
+            Log.d("MainActivityViewmodel", "isInCart: $isInCart")
+            if (isInCart) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(getApplication(), "Item is already in the cart", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                repository.addToCart(item)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(getApplication(), "Item added to cart", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+    // Function to update a product in the cart
+    fun updateCartItem(item: CartItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateCartItem(item)
+        }
+    }
+
+    // Function to remove a product from the cart
+    fun removeFromCart(cartItemId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.removeFromCart(cartItemId)
+        }
+    }
+
+    // Function to get all cart items
+    fun getAllCartItems() = repository.cartItems
+
+
+
+
 }

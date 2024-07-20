@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.khan.R
 import com.example.khan.databinding.ProductsItemLayoutBinding
 import com.example.khan.databinding.SpecialOfferItemBinding
+import com.example.khan.local_db.entity.CartItem
 import com.example.khan.model.Item
 //import com.example.khan.view.ProductsScreenFragmentDirections
 import com.example.khan.viewmodel.MainActivityViewmodel
@@ -81,6 +82,20 @@ class ProductAdapter(
                 viewModel.fetchProduct(productId)
                 it.findNavController()
                     .navigate(R.id.action_productsScreenFragment_to_productDetailFragment)
+            }
+
+            addToCart.setOnClickListener {
+                viewModel.addToCart(
+                    CartItem(
+                        cartItemId = 0,
+                        productId = currentProduct.id,
+                        productImageUrl = currentProduct.photos[0].url,
+                        productTitle = currentProduct.name,
+                        productQuantity = 1,
+                        productPrice = "2"
+                    )
+                )
+
             }
         }
     }

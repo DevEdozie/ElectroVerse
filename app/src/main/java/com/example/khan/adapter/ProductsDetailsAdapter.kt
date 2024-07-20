@@ -40,7 +40,7 @@ class ProductsDetailsAdapter(
 
     //stuff
     private var categoryFilter: String? = null
-//    private var currentProductId: String? = null
+    private var currentProductId: String? = null
 
     // Inflates the item layout and creates a ViewHolder object
     override fun onCreateViewHolder(
@@ -80,23 +80,7 @@ class ProductsDetailsAdapter(
         }
     }
 
-    // Method to filter and submit the list of items
-//    fun submitList(items: List<Item>) {
-//        val filteredItems = categoryFilter?.let { filter ->
-//            items.filter { item ->
-//                item.id != currentProductId && item.categories.any { category -> category.name == filter }
-//            }
-//        } ?: items
-//        differ.submitList(filteredItems)
-//    }
 
-
-    // Update category filter and current product ID
-//    fun updateCategory(categoryName: String?, currentProductId: String?) {
-//        this.categoryFilter = categoryName
-//        this.currentProductId = currentProductId
-//        submitList(differ.currentList)
-//    }
 
     fun submitList(items: List<Item>) {
         val filteredItems = categoryFilter?.let { filter ->
@@ -111,4 +95,34 @@ class ProductsDetailsAdapter(
         categoryFilter = categoryName
         submitList(differ.currentList)
     }
+
+//    fun submitList(items: List<Item>, currentProductId: String?) {
+//        val filteredItems = categoryFilter?.let { filter ->
+//            items.filter { item ->
+//                item.id != currentProductId && item.categories.any { category -> category.name == filter }
+//            }
+//        } ?: items.filter { it.id != currentProductId }
+//        differ.submitList(filteredItems)
+//    }
+//
+//    fun updateCategory(categoryName: String?, currentProductId: String?) {
+//        categoryFilter = categoryName
+//        this.currentProductId = currentProductId
+//        // No need to submit list here, it will be handled in setUpRecyclerView
+//    }
+
+//    fun submitList(items: List<Item>, currentProductId: String?) {
+//        val filteredItems = categoryFilter?.let { filter ->
+//            items.filter { item ->
+//                item.id != currentProductId && item.categories.any { category -> category.name == filter }
+//            }
+//        } ?: items.filter { it.id != currentProductId }
+//        differ.submitList(filteredItems)
+//    }
+//
+//    fun updateCategory(categoryName: String?, currentProductId: String?) {
+//        categoryFilter = categoryName
+//        this.currentProductId = currentProductId
+//        submitList(differ.currentList, currentProductId)
+//    }
 }

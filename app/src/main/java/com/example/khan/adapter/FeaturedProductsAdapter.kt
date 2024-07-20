@@ -2,6 +2,7 @@ package com.example.khan.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.khan.R
 import com.example.khan.databinding.FeaturedShoesItemBinding
+import com.example.khan.local_db.entity.CartItem
 import com.example.khan.model.Item
 import com.example.khan.viewmodel.MainActivityViewmodel
 
@@ -38,9 +40,13 @@ class FeaturedProductsAdapter(
 
     // AsyncListDiffer to handle list changes asynchronously and efficiently
     val differ = AsyncListDiffer(this, differCallBack)
+    var imageUrl: String = ""
 
     // Inflates the item layout and creates a ViewHolder object
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturedProductsAdapterViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): FeaturedProductsAdapterViewHolder {
         val binding =
             FeaturedShoesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FeaturedProductsAdapterViewHolder(binding)
@@ -59,7 +65,7 @@ class FeaturedProductsAdapter(
             // Set the product price
 //            productPrice.text = "$${currentProduct.current_price[0].USD[0]}"
             // Check if photos list is not empty and load the first image
-            val imageUrl = "https://api.timbu.cloud/images/${currentProduct.photos[0].url}"
+            imageUrl = "https://api.timbu.cloud/images/${currentProduct.photos[0].url}"
             if (imageUrl.isNotEmpty()) {
                 Glide.with(holder.itemBinding.root.context).load(imageUrl).into(productImage)
             } else {
@@ -72,6 +78,19 @@ class FeaturedProductsAdapter(
                 viewModel.fetchProduct(productId)
                 it.findNavController()
                     .navigate(R.id.action_productsScreenFragment_to_productDetailFragment)
+            }
+            addToCart.setOnClickListener {
+                viewModel.addToCart(
+                    CartItem(
+                        cartItemId = 0,
+                        productId = currentProduct.id,
+                        productImageUrl = currentProduct.photos[0].url,
+                        productTitle = currentProduct.name,
+                        productQuantity = 1,
+                        productPrice = "2"
+                    )
+                )
+
             }
         }
     }

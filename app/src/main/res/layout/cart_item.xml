@@ -21,34 +21,38 @@
             android:scaleType="centerCrop"/>
 
         <TextView
-            android:layout_margin="12dp"
+            android:layout_marginBottom="4dp"
+            android:padding="2dp"
             android:id="@+id/product_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxEms="10"
             android:textColor="@color/black"
             android:text="@string/product_title"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/remove_item_iv"
+            app:layout_constraintEnd_toStartOf="@id/remove_item_iv"
             app:layout_constraintStart_toEndOf="@id/product_image"/>
 
 
         <LinearLayout
+            android:layout_marginBottom="6dp"
             android:id="@+id/qty_counter_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="8dp"
             app:layout_constraintStart_toEndOf="@id/product_image"
-            app:layout_constraintTop_toBottomOf="@id/product_title">
+            app:layout_constraintBottom_toBottomOf="parent">
+
             <ImageView
                 android:id="@+id/minus_iv"
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
                 android:src="@drawable/minus_ic" />
 
             <TextView
+                android:gravity="center"
+                android:layout_weight="1"
                 android:id="@+id/qty_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,6 +62,7 @@
                 android:text="@string/one" />
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/plus_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,17 +71,17 @@
         </LinearLayout>
 
 
+
         <TextView
+            app:layout_goneMarginTop="6dp"
             android:id="@+id/product_price"
             android:layout_width="0dp"
             android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="@string/product_price"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/qty_counter_layout"
-            app:layout_constraintTop_toTopOf="@id/qty_counter_layout"
-            app:layout_constraintStart_toEndOf="@id/qty_counter_layout"
-            android:layout_margin="12dp"/>
+            app:layout_constraintStart_toEndOf="@id/product_image"
+            app:layout_constraintTop_toBottomOf="@id/product_title" />
 
         <ImageView
             android:id="@+id/remove_item_iv"

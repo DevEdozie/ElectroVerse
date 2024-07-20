@@ -19,6 +19,7 @@ import com.example.khan.adapter.FeaturedProductsAdapter
 import com.example.khan.adapter.ProductAdapter
 import com.example.khan.adapter.ProductsDetailsAdapter
 import com.example.khan.databinding.FragmentProductDetailBinding
+import com.example.khan.local_db.entity.CartItem
 import com.example.khan.model.BaseResponse
 import com.example.khan.model.Item
 import com.example.khan.viewmodel.MainActivityViewmodel
@@ -93,7 +94,19 @@ class ProductDetailFragment : Fragment() {
             category in listOf("laptops", "monitors", "watches", "tablets", "headphones", "phones")
         }
         productDetailsAdapter.updateCategory(selectedCategoryName)
-//        productDetailsAdapter.updateCategory(selectedCategoryName, product?.id)
+
+//        binding.addToCart.setOnClickListener {
+//            viewModel.addToCart(
+//                CartItem(
+//                    cartItemId = 0,
+//                    productId = product?.id,
+//                    productImageUrl = product.photos[0].url,
+//                    productTitle = currentProduct.name,
+//                    productQuantity = 1,
+//                    productPrice = "2"
+//                )
+//            )
+//        }
     }
 
     // Function to observe product data from the ViewModel
@@ -144,6 +157,8 @@ class ProductDetailFragment : Fragment() {
 //            productAdapter.differ.submitList(items)
             // Submit the filtered list to the adapter
             productDetailsAdapter.submitList((items))
+            // Initially submit the full list without filtering
+//            productDetailsAdapter.submitList(items, null)
         }
     }
 
@@ -174,6 +189,7 @@ class ProductDetailFragment : Fragment() {
             // Do nothing if currentCount is 1
         }
     }
+
 
 
 
