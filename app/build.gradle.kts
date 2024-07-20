@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.swiperefreshlayout)
     // Circle Indicator
     implementation(libs.circleindicator)
+    implementation(libs.androidx.cardview)
     // ROOM
     val room_version = "2.6.1"
 

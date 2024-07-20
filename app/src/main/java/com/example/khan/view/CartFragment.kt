@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,14 +22,12 @@ import com.example.khan.viewmodel.MainActivityViewmodel
 class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
+
     // Obtain ViewModel from the parent activity
     private val viewModel: MainActivityViewmodel by activityViewModels()
 
     // Declare the CartItemsAdapter and binding object
     private lateinit var cartItemsAdapter: CartItemsAdapter
-
-
-
 
 
     override fun onCreateView(
@@ -37,6 +36,8 @@ class CartFragment : Fragment() {
     ): View? {
         binding = FragmentCartBinding.inflate(layoutInflater, container, false)
         setUpRecyclerView()
+        setUpBackArrowNavigation()
+        setUpCheckoutNavigation()
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -49,6 +50,7 @@ class CartFragment : Fragment() {
             findNavController().popBackStack(R.id.productsScreenFragment, false)
         }
     }
+
 
     // Function to set up the RecyclerView with the ProductAdapter
     private fun setUpRecyclerView() {
@@ -63,6 +65,12 @@ class CartFragment : Fragment() {
         // Observe items data from the ViewModel and submit to the adapter
         viewModel.getAllCartItems().observe(viewLifecycleOwner) { items ->
             cartItemsAdapter.differ.submitList(items)
+        }
+    }
+
+    private fun setUpCheckoutNavigation() {
+        binding.checkoutBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_cartFragment2_to_checkoutFragment)
         }
     }
 

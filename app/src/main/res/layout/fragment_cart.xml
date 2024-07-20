@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     tools:context=".view.CartFragment">
 
     <Toolbar
@@ -34,10 +33,11 @@
     </Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="4dp"
         android:id="@+id/cart_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/add_to_cart"
+        app:layout_constraintBottom_toTopOf="@id/checkout_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -65,12 +65,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/add_to_cart"
+        android:id="@+id/checkout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:backgroundTint="@color/blue"
-        android:text="@string/add_to_cart"
+        android:text="@string/checkout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

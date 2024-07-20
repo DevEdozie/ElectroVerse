@@ -45,4 +45,16 @@
     <string name="proceed">Proceed</string>
     <string name="featured_products">Featured Products</string>
     <string name="you_might_also_like">You might also like</string>
+    <string name="delivery_fee">Delivery fee</string>
+    <string name="discount">Discount</string>
+    <string name="total">Total</string>
+    <string name="select_a_payment_option">Select a payment option</string>
+    <string name="add_a_new_card">Add a new Card</string>
+    <string name="full_name">Full name</string>
+    <string name="enter_your_full_name">Enter your full name</string>
+    <string name="email_address">Email Address</string>
+    <string name="enter_your_email_address">Enter your email address</string>
+    <string name="phone_number">Phone number</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="proceed_to_payment">Proceed to payment</string>
 </resources>
