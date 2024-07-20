@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.khan.R
 import com.example.khan.databinding.FeaturedShoesItemBinding
 import com.example.khan.local_db.entity.CartItem
+import com.example.khan.local_db.entity.WishListItem
 import com.example.khan.model.Item
 import com.example.khan.viewmodel.MainActivityViewmodel
 
@@ -88,6 +89,20 @@ class FeaturedProductsAdapter(
                         productTitle = currentProduct.name,
                         productQuantity = 1,
                         productPrice = "2"
+                    )
+                )
+            }
+
+
+            // Add to wishlist
+            addToWishListBtn.setOnClickListener {
+                viewModel.addToWishList(
+                    WishListItem(
+                        wishListItemId = 0,
+                        productId = currentProduct.id,
+                        productImageUrl = currentProduct.photos[0].url,
+                        productPrice = "2",
+                        productTitle = currentProduct.name
                     )
                 )
 

@@ -9,9 +9,11 @@ import android.widget.GridLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.khan.R
 import com.example.khan.adapter.FeaturedProductsAdapter
 import com.example.khan.adapter.ProductAdapter
 import com.example.khan.adapter.SliderAdapter
@@ -56,6 +58,9 @@ class ProductsScreenFragment : Fragment() {
 
         // Set up view pager
         setUpViewPager()
+
+        // Set up wish list button
+        setUpWishListButton()
 
         return binding.root
     }
@@ -144,10 +149,17 @@ class ProductsScreenFragment : Fragment() {
 
         // Observe items data from the ViewModel and submit to the adapter
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            val sliderAdapter = SliderAdapter(items,viewModel)
+            val sliderAdapter = SliderAdapter(items, viewModel)
             binding.viewPager.adapter = sliderAdapter
             // Set up circle indicator with view pager
             binding.circleIndicator.setViewPager(binding.viewPager)
         }
     }
+
+    private fun setUpWishListButton() {
+        binding.wishlistIc.setOnClickListener {
+            findNavController().navigate(R.id.action_productsScreenFragment_to_wishListFragment)
+        }
+    }
+
 }

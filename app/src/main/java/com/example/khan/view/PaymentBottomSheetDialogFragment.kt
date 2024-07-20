@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.example.khan.R
 import com.example.khan.databinding.BottomModalLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -46,6 +47,7 @@ class PaymentBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         binding.proceedToPaymentBtn.setOnClickListener {
             // Add navigation
+            findNavController().navigate(R.id.action_checkoutFragment_to_paymentSuccessfulFragment2)
             dismiss()
         }
 
@@ -64,10 +66,16 @@ class PaymentBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val allInputsFilled = name.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty()
         binding.proceedToPaymentBtn.isEnabled = allInputsFilled
 
-        if (allInputsFilled) {
-            binding.proceedToPaymentBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+//        if (allInputsFilled) {
+//            binding.proceedToPaymentBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.blue))
+//        } else {
+//            binding.proceedToPaymentBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.faded_blue))
+//        }
+        val buttonImage = if (allInputsFilled) {
+            R.drawable.blue_button
         } else {
-            binding.proceedToPaymentBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.faded_blue))
+            R.drawable.faded_blue_button // Replace with your image resource for disabled state
         }
+        binding.proceedToPaymentBtn.setImageResource(buttonImage)
     }
 }

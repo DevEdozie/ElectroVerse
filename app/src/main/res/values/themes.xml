@@ -3,15 +3,15 @@
     <style name="Base.Theme.Khan" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/teal</item>
+        <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/teal_dark</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Button color - assuming accent color is used -->
-        <item name="colorAccent">@color/teal</item>
+        <item name="colorAccent">@color/blue</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/lighter_gray</item>
     </style>
 
     <style name="Theme.Khan" parent="Base.Theme.Khan" />

@@ -9,24 +9,27 @@
         android:id="@+id/productsScreenFragment"
         android:name="com.example.khan.view.ProductsScreenFragment"
         android:label="fragment_products_screen"
-        tools:layout="@layout/fragment_products_screen" >
+        tools:layout="@layout/fragment_products_screen">
 
         <action
             android:id="@+id/action_productsScreenFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_productsScreenFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.khan.view.ProductDetailFragment"
         android:label="fragment_product_detail"
-        tools:layout="@layout/fragment_product_detail" >
+        tools:layout="@layout/fragment_product_detail">
 
     </fragment>
     <fragment
         android:id="@+id/cartFragment2"
         android:name="com.example.khan.view.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
+        tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_cartFragment2_to_checkoutFragment"
             app:destination="@id/checkoutFragment" />
@@ -35,5 +38,31 @@
         android:id="@+id/checkoutFragment"
         android:name="com.example.khan.view.CheckoutFragment"
         android:label="fragment_checkout"
-        tools:layout="@layout/fragment_checkout" />
+        tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_paymentSuccessfulFragment2"
+            app:destination="@id/paymentSuccessfulFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentSuccessfulFragment"
+        android:name="com.example.khan.view.PaymentSuccessfulFragment"
+        android:label="fragment_payment_successful"
+        tools:layout="@layout/fragment_payment_successful" />
+    <dialog
+        android:id="@+id/paymentBottomSheetDialogFragment2"
+        android:name="com.example.khan.view.PaymentBottomSheetDialogFragment"
+        android:label="PaymentBottomSheetDialogFragment" >
+        <action
+            android:id="@+id/action_paymentBottomSheetDialogFragment2_to_paymentSuccessfulFragment"
+            app:destination="@id/paymentSuccessfulFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.example.khan.view.WishListFragment"
+        android:label="fragment_wish_list"
+        tools:layout="@layout/fragment_wish_list" >
+        <action
+            android:id="@+id/action_wishListFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
 </navigation>

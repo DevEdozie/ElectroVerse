@@ -109,11 +109,12 @@
             android:hint="@string/enter_your_phone_number"
             app:layout_constraintTop_toBottomOf="@id/phone_number_tv" />
 
-        <Button
+        <ImageView
             android:id="@+id/proceed_to_payment_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/faded_blue"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/faded_blue_button"
             android:text="@string/proceed_to_payment"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

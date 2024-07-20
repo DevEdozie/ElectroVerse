@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.khan.local_db.database.AppDatabase
 import com.example.khan.local_db.entity.CartItem
+import com.example.khan.local_db.entity.WishListItem
 import com.example.khan.model.BaseResponse
 import com.example.khan.model.Item
 import com.example.khan.model.ProductsResponse
@@ -43,10 +44,10 @@ class MainActivityViewmodel(application: Application) : AndroidViewModel(applica
 
     init {
         val cartDao = AppDatabase.getDatabase(application).cartDao()
-        repository = CacheRepository(cartDao)
+        val wishListDao = AppDatabase.getDatabase(application).wishListDao()
+        repository = CacheRepository(cartDao, wishListDao)
         fetchProducts()
     }
-
 
 
     // Function to fetch products
@@ -87,27 +88,62 @@ class MainActivityViewmodel(application: Application) : AndroidViewModel(applica
         }
     }
 
+    // Function to add a product to the wish list
+    fun addToWishList(wishListItem: WishListItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val wishListItems = getAllWishListItems()
+            val productName = wishListItem.productTitle
+            val isInWishList =
+                wishListItems.value?.any { product -> product.productTitle == productName } ?: false
+            if (isInWishList) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        getApplication(),
+                        "Item is already in wish list",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                repository.addToWishList(wishListItem)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(getApplication(), "Item added to wish list", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+    }
+
+
+    // Function to get all wishlist items
+    fun getAllWishListItems() = repository.wishListItems
+
 
     // Function to add a product to the cart
     fun addToCart(item: CartItem) {
         viewModelScope.launch(Dispatchers.IO) {
             val cartItems = getAllCartItems()
             val productName = item.productTitle
-            val isInCart = cartItems.value?.any { product -> product.productTitle == productName } ?: false
-            Log.d("MainActivityViewmodel", "addToCart called with item: $item")
-            Log.d("MainActivityViewmodel", "isInCart: $isInCart")
+            val isInCart =
+                cartItems.value?.any { product -> product.productTitle == productName } ?: false
             if (isInCart) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(getApplication(), "Item is already in the cart", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        getApplication(),
+                        "Item is already in the cart",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } else {
                 repository.addToCart(item)
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(getApplication(), "Item added to cart", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(getApplication(), "Item added to cart", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
     }
+
+
     // Function to update a product in the cart
     fun updateCartItem(item: CartItem) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -124,8 +160,6 @@ class MainActivityViewmodel(application: Application) : AndroidViewModel(applica
 
     // Function to get all cart items
     fun getAllCartItems() = repository.cartItems
-
-
 
 
 }

@@ -57,4 +57,10 @@
     <string name="phone_number">Phone number</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="proceed_to_payment">Proceed to payment</string>
+    <string name="payment_successful">Payment successful</string>
+    <string name="payment_text">You have successfully placed an order. Details of your order has been sent to your email.</string>
+    <string name="okay">Okay</string>
+    <string name="wish_list_txt">You have not added any item to your wish list</string>
+    <string name="discover_products">Discover products</string>
+    <string name="my_wishlist">My Wishlist</string>
 </resources>

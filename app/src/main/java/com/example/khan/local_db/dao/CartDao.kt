@@ -10,7 +10,7 @@ import com.example.khan.local_db.entity.CartItem
 
 @Dao
 interface CartDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addToCart(cartItem: CartItem)
 
     @Update
