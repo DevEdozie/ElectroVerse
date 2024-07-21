@@ -63,4 +63,9 @@
     <string name="wish_list_txt">You have not added any item to your wish list</string>
     <string name="discover_products">Discover products</string>
     <string name="my_wishlist">My Wishlist</string>
+    <string name="all_orders">All orders</string>
+    <string name="my_orders">My Orders</string>
+    <string name="no_order">No completed order yet</string>
+    <string name="no_item">No item added to cart yet</string>
+    <string name="price_format">\$%.2f</string>
 </resources>

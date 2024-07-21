@@ -7,15 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.khan.R
 import com.example.khan.databinding.BottomModalLayoutBinding
+import com.example.khan.viewmodel.MainActivityViewmodel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class PaymentBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: BottomModalLayoutBinding
+    // Obtain ViewModel from the parent activity
+    private val viewModel: MainActivityViewmodel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +52,8 @@ class PaymentBottomSheetDialogFragment : BottomSheetDialogFragment() {
         binding.proceedToPaymentBtn.setOnClickListener {
             // Add navigation
             findNavController().navigate(R.id.action_checkoutFragment_to_paymentSuccessfulFragment2)
+            // Add cart items to orders, also empty the cart
+            viewModel.checkout()
             dismiss()
         }
 

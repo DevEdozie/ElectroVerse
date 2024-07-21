@@ -59,12 +59,14 @@ class FeaturedProductsAdapter(
     // Binds the data to the item view
     override fun onBindViewHolder(holder: FeaturedProductsAdapterViewHolder, position: Int) {
         val currentProduct = differ.currentList[position]
+        val price = 500
 
         holder.itemBinding.apply {
             // Set the product title
             productTitle.text = currentProduct.name
             // Set the product price
 //            productPrice.text = "$${currentProduct.current_price[0].USD[0]}"
+            productPrice.text = "$${price}"
             // Check if photos list is not empty and load the first image
             imageUrl = "https://api.timbu.cloud/images/${currentProduct.photos[0].url}"
             if (imageUrl.isNotEmpty()) {
@@ -88,7 +90,7 @@ class FeaturedProductsAdapter(
                         productImageUrl = currentProduct.photos[0].url,
                         productTitle = currentProduct.name,
                         productQuantity = 1,
-                        productPrice = "2"
+                        productPrice = "$price"
                     )
                 )
             }
@@ -101,7 +103,7 @@ class FeaturedProductsAdapter(
                         wishListItemId = 0,
                         productId = currentProduct.id,
                         productImageUrl = currentProduct.photos[0].url,
-                        productPrice = "2",
+                        productPrice = "$price",
                         productTitle = currentProduct.name
                     )
                 )

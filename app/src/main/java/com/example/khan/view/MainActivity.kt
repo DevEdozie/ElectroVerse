@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         // Listen for fragment changes
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.productDetailFragment, R.id.cartFragment2, R.id.checkoutFragment , R.id.paymentSuccessfulFragment-> hideBottomNavigation()
+                R.id.productDetailFragment, R.id.cartFragment2, R.id.checkoutFragment, R.id.paymentSuccessfulFragment, R.id.wishListFragment -> hideBottomNavigation()
                 else -> showBottomNavigation()
             }
         }

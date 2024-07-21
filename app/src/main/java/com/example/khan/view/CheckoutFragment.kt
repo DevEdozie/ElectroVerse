@@ -36,6 +36,8 @@ class CheckoutFragment : Fragment() {
         setUpRecyclerView()
         setUpBackArrowNavigation()
         setUpProceedButton()
+        setUpCancelButton()
+        observePriceSummary() // Observe price summary LiveData
         return binding.root
     }
 
@@ -70,6 +72,32 @@ class CheckoutFragment : Fragment() {
         binding.proceedBtn.setOnClickListener {
             val bottomSheet = PaymentBottomSheetDialogFragment()
             bottomSheet.show(parentFragmentManager, "PaymentBottomSheetDialog")
+        }
+    }
+
+    // Function to show bottom modal on "Proceed" button click
+    private fun setUpCancelButton() {
+        binding.cancelBtn.setOnClickListener {
+            findNavController().popBackStack(R.id.cartFragment2, false)
+        }
+    }
+
+    // Function to observe price summary LiveData
+    private fun observePriceSummary() {
+        viewModel.totalPrice.observe(viewLifecycleOwner) { totalPrice ->
+            binding.productsTotalPriceTv.text = "$$totalPrice"
+        }
+
+        viewModel.deliveryFee.observe(viewLifecycleOwner) { deliveryFee ->
+            binding.productsDeliveryFeeTv.text = "$$deliveryFee"
+        }
+
+        viewModel.discount.observe(viewLifecycleOwner) { discount ->
+            binding.productsDiscountTv.text = "$$discount"
+        }
+
+        viewModel.finalTotal.observe(viewLifecycleOwner) { finalTotal ->
+            binding.productsTotalTv.text = "$$finalTotal"
         }
     }
 

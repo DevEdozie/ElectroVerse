@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.khan.R
 import com.example.khan.databinding.FeaturedShoesItemBinding
+import com.example.khan.local_db.entity.CartItem
+import com.example.khan.local_db.entity.WishListItem
 import com.example.khan.model.Item
 import com.example.khan.viewmodel.MainActivityViewmodel
 
@@ -58,12 +60,14 @@ class ProductsDetailsAdapter(
     // Binds the data to the item view
     override fun onBindViewHolder(holder: ProductsDetailsAdapterViewHolder, position: Int) {
         val currentProduct = differ.currentList[position]
+        val price = 500
 
         holder.itemBinding.apply {
             // Set the product title
             productTitle.text = currentProduct.name
             // Set the product price
 //            productPrice.text = "$${currentProduct.current_price[0].USD[0]}"
+            productPrice.text = "$${price}"
             // Check if photos list is not empty and load the first image
             val imageUrl = "https://api.timbu.cloud/images/${currentProduct.photos[0].url}"
             if (imageUrl.isNotEmpty()) {
@@ -76,6 +80,34 @@ class ProductsDetailsAdapter(
             productImage.setOnClickListener {
                 val productId = currentProduct.id
                 viewModel.fetchProduct(productId)
+            }
+            //
+            addToCart.setOnClickListener {
+                viewModel.addToCart(
+                    CartItem(
+                        cartItemId = 0,
+                        productId = currentProduct.id,
+                        productImageUrl = currentProduct.photos[0].url,
+                        productTitle = currentProduct.name,
+                        productQuantity = 1,
+                        productPrice = "$price"
+                    )
+                )
+            }
+
+
+            // Add to wishlist
+            addToWishListBtn.setOnClickListener {
+                viewModel.addToWishList(
+                    WishListItem(
+                        wishListItemId = 0,
+                        productId = currentProduct.id,
+                        productImageUrl = currentProduct.photos[0].url,
+                        productPrice = "$price",
+                        productTitle = currentProduct.name
+                    )
+                )
+
             }
         }
     }

@@ -212,7 +212,7 @@
                         android:id="@+id/divider_ic"
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
+                        android:layout_height="1dp"
                         android:background="@color/gray"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -244,6 +244,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/cancel_btn"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

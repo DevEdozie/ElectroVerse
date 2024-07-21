@@ -72,8 +72,14 @@ class ProductDetailFragment : Fragment() {
 
     // Function to set up product details in the UI
     private fun setUpProductDetail(product: Item?) {
+       val price = 500
         // Set product title text
         binding.productTitle.text = product?.name
+
+        // Set product price text
+        binding.productPrice.text = "$${price}"
+        // set total price
+        binding.totalPrice.text = "$${price}"
 
         // Set product description text
         binding.productDesc.text = "${product?.description}"
@@ -105,7 +111,7 @@ class ProductDetailFragment : Fragment() {
                         productImageUrl = product.photos[0].url,
                         productTitle = product.name,
                         productQuantity = binding.qtyCount.text.toString().toInt(),
-                        productPrice = "2" // Replace with actual product price
+                        productPrice = "$price" // Replace with actual product price
                     )
                 )
             }
@@ -119,7 +125,7 @@ class ProductDetailFragment : Fragment() {
                         wishListItemId = 0,
                         productId = product.id,
                         productImageUrl = product.photos[0].url,
-                        productPrice = "2",
+                        productPrice = "$price",
                         productTitle = product.name
                     )
                 )

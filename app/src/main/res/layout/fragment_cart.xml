@@ -32,11 +32,38 @@
             android:textStyle="bold" />
     </Toolbar>
 
+    <LinearLayout
+        android:id="@+id/cart_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageView
+            android:id="@+id/cart_placeholder_ic"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="12dp"
+            android:src="@drawable/orders_placeholder_ic" />
+
+        <TextView
+            android:id="@+id/cart_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/no_item" />
+    </LinearLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="4dp"
         android:id="@+id/cart_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:padding="4dp"
         app:layout_constraintBottom_toTopOf="@id/checkout_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginBottom="6dp"
         android:text="@string/total_price"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -69,6 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="6dp"
         android:background="@drawable/button_background"
         android:text="@string/checkout"
         app:layout_constraintBottom_toBottomOf="parent"

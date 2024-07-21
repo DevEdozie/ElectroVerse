@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".view.OrdersFragment">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/my_orders"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </Toolbar>
+
+    <ImageView
+        android:id="@+id/order_placeholder_ic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="12dp"
+        android:src="@drawable/orders_placeholder_ic" />
+
+    <TextView
+        android:id="@+id/order_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_order" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orders_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/checkout_item" />
+
+
+</LinearLayout>

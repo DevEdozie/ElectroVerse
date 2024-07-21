@@ -21,6 +21,8 @@ class SliderAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Item) {
 
+            val price = 500
+
             // Truncate the product title if it exceeds 15 characters
             val truncatedTitle = if (item.name.length > 15) {
                 item.name.substring(0, 15) + "..."
@@ -29,6 +31,7 @@ class SliderAdapter(
             }
             binding.productTitle.text = truncatedTitle
 //            binding.productPrice.text = "$${item.current_price[0].USD[0]}"
+            binding.productPrice.text = "$${price}"
             val imageUrl = "https://api.timbu.cloud/images/${item.photos[0].url}"
             if (imageUrl.isNotEmpty()) {
                 Glide.with(binding.productImg.context).load(imageUrl).into(binding.productImg)
@@ -44,7 +47,7 @@ class SliderAdapter(
                         productImageUrl = item.photos[0].url, // Use item.photos[0].url
                         productTitle = item.name, // Use item.name
                         productQuantity = 1,
-                        productPrice = "2" // This should be the actual price from item
+                        productPrice = "$price" // This should be the actual price from item
                     )
                 )
             }

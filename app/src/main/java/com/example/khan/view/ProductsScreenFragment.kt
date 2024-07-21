@@ -80,8 +80,8 @@ class ProductsScreenFragment : Fragment() {
 
                 is BaseResponse.Success -> {
                     // On success, make the RecyclerView visible and hide the no signal text
-//                    binding.productsRecyclerview.visibility = View.VISIBLE
-//                    binding.noSignalTv.visibility = View.GONE
+                    binding.scrollView.visibility = View.VISIBLE
+                    binding.noSignalTv.visibility = View.GONE
                 }
 
                 is BaseResponse.Error -> {
@@ -92,8 +92,8 @@ class ProductsScreenFragment : Fragment() {
                         "${errorMessage}",
                         Toast.LENGTH_SHORT
                     ).show()
-//                    binding.productsRecyclerview.visibility = View.GONE
-//                    binding.noSignalTv.visibility = View.VISIBLE
+                    binding.scrollView.visibility = View.GONE
+                    binding.noSignalTv.visibility = View.VISIBLE
                 }
             }
         }

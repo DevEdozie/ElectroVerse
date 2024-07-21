@@ -16,6 +16,8 @@ import com.example.khan.adapter.FeaturedProductsAdapter
 import com.example.khan.adapter.ProductAdapter
 import com.example.khan.databinding.FragmentCartBinding
 import com.example.khan.databinding.FragmentProductsScreenBinding
+import com.example.khan.local_db.entity.CartItem
+import com.example.khan.local_db.entity.OrderItem
 import com.example.khan.viewmodel.MainActivityViewmodel
 
 
@@ -38,6 +40,7 @@ class CartFragment : Fragment() {
         setUpRecyclerView()
         setUpBackArrowNavigation()
         setUpCheckoutNavigation()
+        observePriceSummary() // Observe price summary LiveData
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -65,12 +68,38 @@ class CartFragment : Fragment() {
         // Observe items data from the ViewModel and submit to the adapter
         viewModel.getAllCartItems().observe(viewLifecycleOwner) { items ->
             cartItemsAdapter.differ.submitList(items)
+            updateUI(items)
         }
     }
 
     private fun setUpCheckoutNavigation() {
         binding.checkoutBtn.setOnClickListener {
             findNavController().navigate(R.id.action_cartFragment2_to_checkoutFragment)
+        }
+    }
+
+    private fun updateUI(cartItems: List<CartItem>) {
+        if (cartItems.isEmpty()) {
+            binding.cartPlaceholder.visibility = View.VISIBLE
+            binding.totalPrice.visibility = View.GONE
+            binding.totalPriceTv.visibility = View.GONE
+            binding.cartRecyclerview.visibility = View.GONE
+            binding.checkoutBtn.visibility = View.GONE
+        } else {
+            binding.cartRecyclerview.visibility = View.VISIBLE
+            binding.totalPrice.visibility = View.VISIBLE
+            binding.totalPriceTv.visibility = View.VISIBLE
+            binding.checkoutBtn.visibility = View.VISIBLE
+            binding.cartPlaceholder.visibility = View.GONE
+
+
+        }
+    }
+
+    // Function to observe price summary LiveData
+    private fun observePriceSummary() {
+        viewModel.totalPrice.observe(viewLifecycleOwner) { totalPrice ->
+            binding.totalPrice.text = "$$totalPrice"
         }
     }
 

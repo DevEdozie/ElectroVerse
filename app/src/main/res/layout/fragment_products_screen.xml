@@ -10,7 +10,6 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginEnd="12dp"
             android:src="@drawable/fav_ic" />
     </Toolbar>
 
@@ -60,6 +60,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <ScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -72,6 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
+                    android:layout_marginStart="4dp"
                     android:contentDescription="@string/ad"
                     android:src="@drawable/ad_ic"
                     app:layout_constraintStart_toStartOf="parent"
@@ -81,6 +83,7 @@
                     android:id="@+id/greeting_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:gravity="start"
                     android:text="@string/good_afternoon"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -122,8 +125,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:padding="2dp"
                     android:orientation="horizontal"
+                    android:padding="2dp"
                     android:src="@drawable/all_products_img"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -140,8 +143,8 @@
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="30dp"
-                        android:layout_weight="1"
                         android:layout_margin="4dp"
+                        android:layout_weight="1"
                         android:src="@drawable/nvidia_logo" />
 
                     <ImageView
@@ -164,10 +167,10 @@
                     android:id="@+id/special_offers_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="@string/our_special_offers"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/all_products_layout" />

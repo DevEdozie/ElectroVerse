@@ -51,6 +51,7 @@ class CartItemsAdapter(
         val currentProduct = differ.currentList[position]
 
 
+
         holder.itemBinding.apply {
             // Truncate the product title if it exceeds 10 characters
             val currentTitle = currentProduct.productTitle
@@ -64,11 +65,8 @@ class CartItemsAdapter(
             // Set the product price
 //            val currentPrice = currentProduct.current_price[0].USD[0]
 //            productPrice.text = "$$currentPrice"
-//            val oldPrice = currentPrice.toString().toDouble() + 10
-//            productOldPrice.apply {
-//                text = "$${oldPrice}"
-//                paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-//            }
+            productPrice.text = "$${currentProduct.productPrice}"
+
             // Check if photos list is not empty and load the first image
             val imageUrl = "https://api.timbu.cloud/images/${currentProduct.productImageUrl}"
             if (imageUrl.isNotEmpty()) {

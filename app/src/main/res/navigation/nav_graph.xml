@@ -65,4 +65,13 @@
             android:id="@+id/action_wishListFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.khan.view.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_ordersFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
 </navigation>
