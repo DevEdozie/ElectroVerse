@@ -1,6 +1,6 @@
 # ElectroVerse
 
-Welcome to the official repository of the **Khan** mobile app. This app is designed to fetch and display data from a backend server, providing users with detailed information about various items. Items in this case, shoes available in store.
+Welcome to the official repository of the **ElectroVerse** mobile app. This app is designed to fetch and display data from a backend server, providing users with detailed information about various items. Items in this case, products available in store.
 
 
 ## Features
@@ -8,13 +8,26 @@ Welcome to the official repository of the **Khan** mobile app. This app is desig
 - **Item Details**: Click on individual items to view their descriptions.
 - **Pull to Refresh**: Swipe down to refresh and update the displayed data.
 - **User-Friendly Navigation**: Intuitive navigation for easy access to different sections of the app.
-
+- **Add to Cart**: Add products to cart.
+- **Checkout Products from Cart**: Checkout product from cart.
+- **View Order istory**: View all orders made.
+- **Add Products to Wish List**: Add products you might like to purchase later.
+  
 ## Screenshots
-![Home Page](https://github.com/DevEdozie/Task-3-HNG/blob/main/home_page.jpg)
-![Item Details Page](https://github.com/DevEdozie/Task-3-HNG/blob/main/detail_page.jpg)
-![Cart page](https://github.com/DevEdozie/Task-3-HNG/blob/main/cart_page.jpg)
-![Special offers](https://github.com/DevEdozie/Task-3-HNG/blob/main/special_offers_category.jpg)
-![More](https://github.com/DevEdozie/Task-3-HNG/blob/main/more_from_khan.jpg)
+![Home Screen](https://github.com/DevEdozie/ElectroVerse/blob/main/home_screen.png)
+![Product Details Top Page](https://github.com/DevEdozie/ElectroVerse/blob/main/product_detail_top_screen.png)
+![Product Details Bottom Page](https://github.com/DevEdozie/ElectroVerse/blob/main/product_detail_bottom_screen.png)
+![Empty Cart page](https://github.com/DevEdozie/ElectroVerse/blob/main/empty_cart_screen.png)
+![Filled Cart page](https://github.com/DevEdozie/ElectroVerse/blob/main/cart_screen.png)
+![Empty Orders page](https://github.com/DevEdozie/ElectroVerse/blob/main/empty_orders_screen.png)
+![Filled Orders page](https://github.com/DevEdozie/ElectroVerse/blob/main/orders_screen.png)
+![Checkout Top Page](https://github.com/DevEdozie/ElectroVerse/blob/main/checkout_top_screen.png)
+![Checkout Bottom Page](https://github.com/DevEdozie/ElectroVerse/blob/main/checkout_bottom_screen.png)
+![Payment Empty Page](https://github.com/DevEdozie/ElectroVerse/blob/main/payment_screen_empty.png)
+![Payment Filled Page](https://github.com/DevEdozie/ElectroVerse/blob/main/payment_screen_filled.png)
+![Payment Successful Page](https://github.com/DevEdozie/ElectroVerse/blob/main/payment_successful_screen.png)
+![Empty WishList Page](https://github.com/DevEdozie/ElectroVerse/blob/main/empty_wishlist_screen.png)
+![Filled WishList Page](https://github.com/DevEdozie/ElectroVerse/blob/main/wishlist_screen.png)
 
 
 ## Setup Instructions
@@ -26,7 +39,7 @@ Welcome to the official repository of the **Khan** mobile app. This app is desig
 
 ### Cloning the Repository
 ```sh
-git clone https://github.com/DevEdozie/Khan_mobile_app.git
+git clone https://github.com/DevEdozie/ElectroVerse.git
 ```
 
 ### Opening the Project in Android Studio
@@ -44,7 +57,7 @@ git clone https://github.com/DevEdozie/Khan_mobile_app.git
 2. Click on **Run > Run 'app'** to install and run the app on your device/emulator.
 
 ## APK Download
-Download the latest APK from the [releases page](https://github.com/DevEdozie/Khan_mobile_app/blob/main/app/release/khan.apk).
+Download the latest APK from the [releases page](https://github.com/DevEdozie/ElectroVerse/blob/main/ElectroVerse.apk).
 
 ## Contributing
 We welcome contributions to improve the Khan app. Please follow these steps:
